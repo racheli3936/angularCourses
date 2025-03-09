@@ -30,7 +30,7 @@ export class HomePageComponent {
     console.log(this.currentCourses$.forEach(c=>c));
     
   }  
-
+//try
   // navigateCourses(): void {
   //   this.router.navigate(['/all-courses']);
   // }
