@@ -1,0 +1,40 @@
+
+  <div class="example-button-row">
+    <button mat-raised-button (click)="changePressLogin()">LOGIN</button>
+  </div>
+
+@if(isPressLogIn==true)
+{
+    <div id="signForm">
+    <form [formGroup]="logInForm" (ngSubmit)="OnSubmit()">
+      
+
+        <mat-form-field appearance="fill">
+            <mat-label for="email">אימייל</mat-label>
+            <input matInput id="email" formControlName="email">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label for="password">סיסמה</mat-label>
+            <input matInput type="password" id="password" formControlName="password">
+        </mat-form-field>
+    
+        
+ 
+      
+    
+@if (valid['email'] && valid['email'].errors && valid['email'].touched) {
+    @if (valid['email'].errors['required']) {
+        <div>email is required</div>
+    }
+    @if (valid['email'].errors['minlength']) {
+        <div>email is required</div>
+    }
+}
+        <button mat-raised-button  color="primary" type="submit">שלח</button>
+    </form>
+</div>
+}
+
+
+

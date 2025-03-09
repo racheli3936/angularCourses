@@ -1,0 +1,25 @@
+.example-button-row {
+    display: table-cell;
+    max-width: 600px;
+    padding: 6px;
+}
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-form-field .mat-label {
+    color: #d5006d; /* גוון ורוד */
+}
+
+.mat-form-field input {
+    color: #000; /* צבע טקסט */
+}
+
+.mat-raised-button {
+    background-color: #d5006d; /* גוון ורוד */
+    color: white; /* צבע טקסט */
+}
+
+.mat-raised-button:hover {
+    background-color: #c51162; /* גוון ורוד כהה */
+}

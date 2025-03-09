@@ -1,0 +1,17 @@
+<p>edit-course works!</p>
+<div>
+    <form [formGroup]="editCourseForm" (ngSubmit)="OnSubmit()">
+        <mat-form-field appearance="fill">
+        <mat-label for="title">שם הקורס</mat-label>
+        <input matInput id="title" formControlName="title" placeholder="{{this.oldCourse.title}}">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+        <mat-label for="description">תיאור</mat-label>
+        <input matInput id="description" formControlName="description" placeholder="{{this.oldCourse.description}}">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">שלח</button>
+    </form>
+
+</div>

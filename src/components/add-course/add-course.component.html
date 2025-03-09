@@ -1,0 +1,17 @@
+<p>add-course works!</p>
+<div>
+    <form [formGroup]="addCourseForm" (ngSubmit)="OnSubmit()">
+        <mat-form-field appearance="fill">
+        <mat-label for="title">שם הקורס</mat-label>
+        <input matInput id="title" formControlName="title">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+        <mat-label for="description">תיאור</mat-label>
+        <input matInput id="description" formControlName="description">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">שלח</button>
+    </form>
+
+</div>

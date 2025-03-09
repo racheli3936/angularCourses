@@ -1,0 +1,13 @@
+<p>home-page works!</p>
+<aside>
+    הקורסים שלי:
+    @for(course of currentCourses$|async; track course.id)
+    {
+        <div>
+            name: {{course.title}},
+            description: {{course.description}}
+        </div>
+    }
+</aside>
+<router-outlet/>
+<!-- <button (click)="navigateCourses()">כל הקורסים</button> -->
