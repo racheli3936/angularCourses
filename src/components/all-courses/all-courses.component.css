@@ -30,3 +30,7 @@
     font-size: 14px;
     text-transform: uppercase;
   }
+  .example-card {
+    max-width: 400px;
+  }
+  

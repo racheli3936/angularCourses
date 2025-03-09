@@ -1,0 +1,28 @@
+<p>course-details works!</p>
+@if(this.showForm)
+{
+  <app-add-lesson [currentCourse]="details"></app-add-lesson>
+}
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{details.title}}</mat-card-title>
+      <mat-card-subtitle> {{details.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <button (click)="addLesson(details)">הוסף שיעור</button>
+      <p>lessons</p>
+      @for(lesson of lesssnsForCourse;track lesson.lessonId)
+      {
+        hvh jhfgvhhgbhjm
+        <p>{{lesson.title}}</p>
+         <p>{{lesson.content}}</p>
+         <button>הסר שיעור</button>
+         <button>ערוך שיעור</button>
+      }
+     
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button> -->
+    </mat-card-actions>
+  </mat-card>

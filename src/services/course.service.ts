@@ -16,19 +16,13 @@ export class CourseService {
   currentCourses$ = this.currentCoursesSubject.asObservable();
   constructor(private http: HttpClient, private userServise: UserServiceService) { }
 
-  private getHeaders() {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}`
-    });
-    return headers;
-  }
   getCourses(): void {
     console.log("getCourses: ", this.userServise.token);
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}`
-    });
-    this.http.get<any[]>(this.apiUrl, { headers }).subscribe(
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${this.userServise.token}`
+    // });
+    this.http.get<any[]>(this.apiUrl).subscribe(
       (data) => {
         this.coursesSubject.next(data);
         // עדכון המצב של הקורסים
@@ -46,16 +40,12 @@ export class CourseService {
   // }
 
   getCourseById(courseId: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}` // אם יש צורך בטוקן
-    });
-    return this.http.get(`${this.apiUrl}/${courseId}`, { headers });
+ 
+    return this.http.get(`${this.apiUrl}/${courseId}`);
   }
   getCoursesForUser(userId: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}`
-    });
-   return this.http.get<any[]>(`${this.apiUrl}/student/${userId}`, { headers }).pipe(
+
+   return this.http.get<any[]>(`${this.apiUrl}/student/${userId}`).pipe(
     tap(res => {
       console.log(res);
 
@@ -65,14 +55,12 @@ export class CourseService {
   }
   createCourse(course: Course): void {
     console.log(course,"new course!!!!!!!!");
-    
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}` // אם יש צורך בטוקן
-    });
-    this.http.post(this.apiUrl, course, { headers }).subscribe(
+    this.http.post(this.apiUrl, course).subscribe(
       (response) => {
         console.log("the course add successfully", response);
         this.getCourses(); // טען מחדש את הקורסים לאחר יצירה
+        console.log("i load");
+        
       },
       (error) => {
         console.error('Error creating course', error);
@@ -84,10 +72,7 @@ console.log("in update course servise");
 
     const courseId=course.id;
     const url = `${this.apiUrl}/${courseId}`;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}`,
-      'Content-Type': 'application/json'
-    });
+
 
     const body = {
       title: course.title,
@@ -98,8 +83,9 @@ console.log("in update course servise");
     console.log("userID",this.userServise.currentUser.id);
     
 if(course.teacherId==this.userServise.currentUser.id)(
-   this.http.put(url, body, { headers }).subscribe(
+   this.http.put(url, body).subscribe(
       (response) => {console.log('Course updated successfully', response);
+        this.getCourses();
       },
       (error) => {
         console.log('Error updating course', error);
@@ -111,8 +97,8 @@ else{
 }
   }
 
-  deleteCourse(id: number, token: string): void {
-    this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).subscribe(
+  deleteCourse(id: number): void {
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
       (response) => {
         this.getCourses(); // טען מחדש את הקורסים לאחר מחיקה
       },
@@ -130,7 +116,7 @@ else{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userServise.token}`
     });
-    this.http.post(`${this.apiUrl}/${courseId}/enroll`, { userId: userId }, { headers }).subscribe(
+    this.http.post(`${this.apiUrl}/${courseId}/enroll`, { userId: userId }).subscribe(
       (response) => {
         console.log('Student enrolled successfully', response);
         console.log(response);
@@ -166,7 +152,7 @@ else{
     });
     const body = { userId: userId }
  
-     this.http.delete(`${this.apiUrl}/${courseId}/unenroll`, { headers, body}).subscribe(
+     this.http.delete(`${this.apiUrl}/${courseId}/unenroll`, { body}).subscribe(
     (response) => {
       console.log('Student unenrolled successfully', response);
       console.log(response);

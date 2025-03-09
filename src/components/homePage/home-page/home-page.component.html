@@ -1,4 +1,13 @@
 <p>home-page works!</p>
+
+    <div class="outer-circle">
+      <div class="inner-circle">
+      {{avatarLetter}}
+        <!-- <img src="path/to/profile-image.jpg" alt="Profile" /> -->
+      </div>
+    </div>
+    
+
 <aside>
     הקורסים שלי:
     @for(course of currentCourses$|async; track course.id)
@@ -9,5 +18,5 @@
         </div>
     }
 </aside>
-<!-- <router-outlet/> -->
+<router-outlet/>
 <!-- <button (click)="navigateCourses()">כל הקורסים</button> -->

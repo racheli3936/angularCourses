@@ -1,0 +1,22 @@
+.outer-circle {
+    width: 48px; /* קוטר של המסגרת החיצונית */
+    height: 48px; /* קוטר של המסגרת החיצונית */
+    background-color: transparent; /* שקוף כדי לראות את העיגול הפנימי */
+    border: 2px solid pink; /* מסגרת חיצונית לבנה */
+    border-radius: 50%; /* הופך את ה-DIV לעיגול */
+ 
+  }
+  
+  .inner-circle {
+    font-size: 20px;
+    font-family:monospace;
+    width: 43px; /* קוטר העיגול הפנימי */
+    height: 43px; /* קוטר העיגול הפנימי */
+    background-color: pink; /* צבע ורוד */
+    border-radius: 50%; /* הופך את ה-DIV לעיגול */
+    border: 2px solid white; /* מסגרת פנימית לבנה */  
+    display: flex; /* מאפשר למרכז תוכן */
+    justify-content: center; /* מרכז את התוכן אופקית */
+    align-items: center; /* מרכז את התוכן אנכית */
+  }
+  

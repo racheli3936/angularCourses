@@ -1,27 +1,28 @@
 <p>all-courses works!</p>
-@if(userRole=='teacher')
-{
-    <button mat-raised-button color="primary" (click)="addCourse()">הוספת קורס</button>
-}
 @for(course of (courses$ | async); track course)
-    {
-        <div class="course">
-            name: {{course.title}},
-            description: {{course.description}},
-            id: {{course.id}}
-
-            @if(userRole=='user')
-            {
-                <div>
-                <button mat-raised-button color="primary" (click)="join(course.id)">הצטרפות</button>
-                <button  mat-raised-button color="warm" (click)="exit(course.id)">יציאה</button>
-            </div>
-            }
-           @if(userRole=='teacher')
-           {
-            <button mat-raised-button color="primary" (click)="editCourse(course)">עריכה</button>
-            <!-- <button mat-raised-button color="warm" (click)="deleteCourse(course.id)">מחיקה</button> -->
-           }
-        </div>
-    }
-    <!-- <button (click)="navigateHome()">חזרה לדף הבית</button> -->
+{
+<div class="course">
+  name: {{course.title}},
+  <!-- description: {{course.description}},
+            id: {{course.id}} -->
+  <button mat-raised-button color="primary" (click)="details(course)">פרטי הקורס</button>
+  @if(currentCourse === course)
+  {
+    <app-course-details ></app-course-details>
+  }
+  @if(userRole=='user')
+  {
+  <div>
+    <button mat-raised-button color="primary" (click)="join(course.id)">הצטרפות</button>
+    <button mat-raised-button color="warm" (click)="exit(course.id)">יציאה</button>
+  </div>
+  }
+  @if(userRole=='teacher')
+  {
+  <button mat-raised-button color="primary" (click)="editCourse(course)">עריכה</button>
+  <button mat-raised-button color="warm" (click)="deleteCourse(course)">מחיקה</button>
+  }
+</div>
+}
+<router-outlet />
+<!-- <button (click)="navigateHome()">חזרה לדף הבית</button> -->

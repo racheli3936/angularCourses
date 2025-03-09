@@ -9,6 +9,7 @@ import { Sign } from 'crypto';
 import { SignInComponent } from '../components/signIn/sign-in/sign-in.component';
 import path from 'path';
 import { authGuard } from '../guards/auth.guard';
+import { teacherGuard } from '../guards/teacher.guard';
 //import { AuthGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
@@ -29,12 +30,12 @@ export const routes: Routes = [
           { path: 'courses', 
               component: AllCoursesComponent,
               children: [
-                  { path: 'edit', component: EditCourseComponent },
+                  { path: 'edit/:title/:description/:id/:teacherId', component: EditCourseComponent },
                   //{ path: 'delete', component: DeleteCourseComponent },
                  // { path: 'register-course', component: RegisterCourseComponent },
                   //{ path: 'leave-course', component: LeaveCourseComponent }
               ]},
-          { path: 'add', component: AddCourseComponent },
+          { path: 'add', component: AddCourseComponent,canActivate: [teacherGuard] },
         
         ],
         canActivate: [authGuard]
