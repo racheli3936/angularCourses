@@ -8,7 +8,7 @@
   <button mat-raised-button color="primary" (click)="details(course)">פרטי הקורס</button>
   @if(currentCourse === course)
   {
-    <app-course-details ></app-course-details>
+    <app-course-details [details]="course" ></app-course-details>
   }
   @if(userRole=='user')
   {

@@ -32,7 +32,6 @@ export class AllCoursesComponent  {
      if(token)
      {
        this.getCourses();
-     console.log("ng on change");
      }
     
   }
@@ -56,13 +55,7 @@ export class AllCoursesComponent  {
   }
   join(courseId:number):void
   {
-    console.log(this.userService.currentUser);
-    
-        console.log(this.userService.currentUser.id);
-
     this.courseService.enrollStudent(courseId)
-    console.log("join");
-    
   }
   exit(courseId:number):void
   {
@@ -80,16 +73,10 @@ export class AllCoursesComponent  {
    }
   }
   editCourse(course:Course):void{
-    console.log("edit this",course);
-    
     this.router.navigate(['/home/courses/edit',course.title, course.description ,course.id,course.teacherId])
-    //this.courseService.updateCourse(courseId,newCourse)
   }
   details(course:Course)
   {
-    console.log("000000000",this.currentCourse);
-    console.log("11111111",course);
-    
     if (this.currentCourse === course) {
       this.currentCourse = null; // אם הקורס כבר מוצג, נסיר אותו
     } else {

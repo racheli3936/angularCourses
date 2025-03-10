@@ -17,11 +17,6 @@ export class CourseService {
   constructor(private http: HttpClient, private userServise: UserServiceService) { }
 
   getCourses(): void {
-    console.log("getCourses: ", this.userServise.token);
-
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${this.userServise.token}`
-    // });
     this.http.get<any[]>(this.apiUrl).subscribe(
       (data) => {
         this.coursesSubject.next(data);
@@ -34,11 +29,6 @@ export class CourseService {
       }
     );
   }
-
-  // getCourseById(id: number, token: string): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
-  // }
-
   getCourseById(courseId: number): Observable<any> {
  
     return this.http.get(`${this.apiUrl}/${courseId}`);
@@ -54,13 +44,10 @@ export class CourseService {
   );
   }
   createCourse(course: Course): void {
-    console.log(course,"new course!!!!!!!!");
     this.http.post(this.apiUrl, course).subscribe(
       (response) => {
         console.log("the course add successfully", response);
         this.getCourses(); // טען מחדש את הקורסים לאחר יצירה
-        console.log("i load");
-        
       },
       (error) => {
         console.error('Error creating course', error);
@@ -68,12 +55,8 @@ export class CourseService {
     );
   }
 updateCourse(course:Course){
-console.log("in update course servise");
-
     const courseId=course.id;
     const url = `${this.apiUrl}/${courseId}`;
-
-
     const body = {
       title: course.title,
       description: course.description,
@@ -89,7 +72,6 @@ if(course.teacherId==this.userServise.currentUser.id)(
       },
       (error) => {
         console.log('Error updating course', error);
-        
       })
 )
 else{
@@ -113,9 +95,6 @@ else{
     let user = this.userServise.currentUser
     let userId = user.id;
     console.log("userId:", userId);
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userServise.token}`
-    });
     this.http.post(`${this.apiUrl}/${courseId}/enroll`, { userId: userId }).subscribe(
       (response) => {
         console.log('Student enrolled successfully', response);

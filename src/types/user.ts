@@ -20,7 +20,7 @@ export type Course={
     lessons:Lesson[]
 }
 export type Lesson={
-    lessonId:number,
+    id:number,
     title:string,
     content:string,
     courseId:number

@@ -53,10 +53,7 @@ export class AuthComponent implements OnInit {
   }
   onUserAdded(user: User) { // פונקציה חדשה להאזנה לאירוע
     this.userService.createUser(user).subscribe((res: ResponceSign) => {
-      console.log("signIn succes", res);
-      console.log(res.userId)
       this.avatarLetter = this.userService.currentUser.name[0]
-      console.log(this.userService.currentUser.id)
       this.isLogin = true
     }, error => {
       console.log("sign in didnt succes", error);
@@ -72,13 +69,11 @@ export class AuthComponent implements OnInit {
         this.isLogin=true
         this.userService.getUserById().subscribe(
           (res)=>{
-            console.log(res);
             this.avatarLetter=this.userService.currentUser.name[0]
           }
         )
         this.courseService.getCoursesForUser(this.userService.currentUser.id).subscribe(
           (res)=>{
-            console.log("courses for user",res);
             this.userService.currentUser.courses=res
           }) 
       },

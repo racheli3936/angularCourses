@@ -15,28 +15,22 @@ export class LessonService {
   constructor(private http: HttpClient,private coursesServise:CourseService) { }
   getLessonsInCourseById(courseId:number):Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${courseId}/lessons`)
-
-    'get'
-    '/:courseId/lessons'
   }
   getLessonById(lessonId:number) {
     this.http.get<any>(`${this.apiUrl}/:courseId/lessons/:id`).subscribe((response) => {
-
     })
-    'get'
-    '/:courseId/lessons/:id '
   }
   createLessonInCourse(courseId:number, lesson: Lesson):void{
       const url = `${this.apiUrl}/${courseId}/lessons`;
       const lessonData:Lesson = {
-        lessonId:-1,
+        id:-1,
         title: lesson.title,
         content: lesson.content,
         courseId: courseId
       };
      const res= this.http.post<any>(url, lessonData).subscribe((response) => {
        console.log('lesson added successfully:', response);
-      lessonData.lessonId = response.LessonId;
+      lessonData.id = response.LessonId;
 this.coursesServise.getCourseById(courseId).subscribe((course) => {
   course.lessons = course.lessons || [];
   course.lessons.push(lessonData);
@@ -44,23 +38,19 @@ this.coursesServise.getCourseById(courseId).subscribe((course) => {
   this.coursesServise.getCourses();
 
 
-});
-       
-      })
-      // return res;
-//       const newCourse =this.coursesServise.getCourseById(courseId).subscribe((course)=>{
-//         course.lessons.push(lessonData)
-//         this.coursesServise.updateCourseById(courseId,course)
-//       })
-// this.coursesServise.ו
-//       return 
+});  })
   }
-  updateLessonById() {
+  updateLessonById(courseId:number,lessonId:number,newLessn:Lesson) {
+    return this.http.put(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)
     'put'
     '/:courseId/lessons/:id '
   }
-  deleteLessonById() {
-    'delete'
-    '/:courseId/lessons/:id '
+  deleteLessonById(courseId:number,lessonId:number):Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)
   }
+  deleteAllLessonsFromCourseById(courseId:number)
+  {
+    let allLessons=this.getLessonsInCourseById(courseId)
+  }
+  
 }

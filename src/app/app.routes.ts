@@ -12,11 +12,7 @@ import { authGuard } from '../guards/auth.guard';
 import { teacherGuard } from '../guards/teacher.guard';
 //import { AuthGuard } from '../guards/auth.guard';
 
-export const routes: Routes = [
-    // {path:'all-courses',component:AllCoursesComponent},
-    // {path:'home-page',component:HomePageComponent },
-    // {path:'add-course',component:AddCourseComponent},
-    // {path:'edit-course/:title/:description/:id/:teacherId', component: EditCourseComponent } 
+export const routes: Routes = [ 
     {path:'auth',component:AuthComponent,
         children:[
             { path: 'login', component: LogInComponent },

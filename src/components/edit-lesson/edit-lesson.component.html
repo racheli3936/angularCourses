@@ -1,0 +1,9 @@
+
+<form (ngSubmit)="onSubmit()">
+    <label for="title">title:</label>
+    <input id="title" [(ngModel)]="lesson.title" name="title" required>
+
+    <label for="content">content:</label>
+        <textarea id="content" [(ngModel)]="lesson.content" name="content" required></textarea>
+        <button type="submit" >Submit</button>
+</form>

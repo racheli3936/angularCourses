@@ -36,12 +36,8 @@ export class SignInComponent {
     this.isPressSignIn = !this.isPressSignIn
   }
   OnSubmit() {
-   // if (this.signInForm.invalid) {
       let newUser: User = this.signInForm.value
-      console.log(newUser)
       this.userAdded.emit(newUser);
-
-   // }
   }
 
   get valid(): { [key: string]: AbstractControl } {

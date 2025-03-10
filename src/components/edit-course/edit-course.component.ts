@@ -43,18 +43,13 @@ oldCourse!:Course
   }
   
   OnSubmit() {
-    console.log("in submit");
-    
     const newCourse: Course = this.editCourseForm.value;
     if (newCourse.title) {
       this.oldCourse.title = newCourse.title;}
     if (newCourse.description) {
       this.oldCourse.description = newCourse.description;
     }
-    console.log("send......",this.oldCourse,newCourse);
-    
     this.courseServise.updateCourse(this.oldCourse);
-  
   }
   get valid() {
     return this.editCourseForm.controls
