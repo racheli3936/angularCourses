@@ -41,7 +41,7 @@ this.coursesServise.getCourseById(courseId).subscribe((course) => {
 });  })
   }
   updateLessonById(courseId:number,lessonId:number,newLessn:Lesson) {
-    return this.http.put(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)
+   // return this.http.put(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)
     'put'
     '/:courseId/lessons/:id '
   }
