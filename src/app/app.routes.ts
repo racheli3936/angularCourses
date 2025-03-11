@@ -36,5 +36,5 @@ export const routes: Routes = [
         ],
         canActivate: [authGuard]
       },
-    { path: '', redirectTo: '/auth', pathMatch: 'prefix' },
+    //{ path: '', redirectTo: '/auth', pathMatch: 'prefix' },
 ];
