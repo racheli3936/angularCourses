@@ -36,8 +36,17 @@ export class SignInComponent {
     this.isPressSignIn = !this.isPressSignIn
   }
   OnSubmit() {
+    
       let newUser: User = this.signInForm.value
-      this.userAdded.emit(newUser);
+      if(newUser.role!='teacher'&&newUser.role!='user')
+      {
+        alert("role must be teacher or user")
+        return
+      }
+      else{
+        this.userAdded.emit(newUser);
+
+      }
   }
 
   get valid(): { [key: string]: AbstractControl } {
