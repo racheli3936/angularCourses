@@ -22,12 +22,8 @@ export class EditLessonComponent {
   constructor(private lessonService: LessonService) {}
 
   onSubmit() {
-    console.log(this.currentLesson,"currentLeson");
-    
     const courseId = this.currentLesson.courseId; // עדכן בהתאם למזהה הקורס
     const lessonId = this.currentLesson.id; 
-    console.log(courseId,"courseId");
-    console.log(lessonId,"lessonId");
     this.lesson.id=lessonId;
     this.lesson.courseId=courseId;
     // עדכן בהתאם למזהה הקורס
@@ -35,7 +31,6 @@ export class EditLessonComponent {
       res=>{console.log(res,"res update");
       this.lessonService.getLessonsInCourseById(courseId).subscribe((lessons) => {
         this.currentCourse.lessons = lessons;
-        console.log("lessons",lessons);
       })
     },
       error=>{

@@ -1,16 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Course, Lesson } from '../../types/user';
+import { Course, Lesson, User } from '../../types/user';
 import { AddLessonComponent } from '../add-lesson/add-lesson.component';
 import { LessonService } from '../../services/lesson.service';
 import { get } from 'node:http';
 import { EditLessonComponent } from "../edit-lesson/edit-lesson.component";
+import { UserServiceService } from '../../services/user-service.service';
+import { MatIcon } from '@angular/material/icon';
+import e from 'express';
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, AddLessonComponent, EditLessonComponent],
+  imports: [MatCardModule, MatButtonModule, AddLessonComponent, EditLessonComponent, MatIcon],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.css'
 })
@@ -20,7 +23,9 @@ export class CourseDetailsComponent implements OnInit {
   showForm = false;
   showEditLesson = false;
   currentLessonToEdit!: Lesson
-  constructor(private lessonService: LessonService) {
+  currentUser!: User;
+  constructor(private lessonService: LessonService, private userService: UserServiceService) {
+    this.currentUser = this.userService.currentUser
   }
   ngOnInit() { }
   addLesson(course: Course) {
@@ -34,16 +39,25 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   deleteLesson(lesson: Lesson) {
-    const lessonId = lesson.id
-    console.log(lessonId, "new lesonid");
+    if (this.userService.currentUser.id !== this.details.teacherId) {
+      alert("you are not the teacher of this course")
+    }
+    else {
+      const lessonId = lesson.id
+      this.lessonService.deleteLessonById(this.details.id, lessonId).subscribe((response) => {
+        console.log("lesson deleted successfully", response);
+        this.getLessonsForCourse();
+      })
+    }
 
-    this.lessonService.deleteLessonById(this.details.id, lessonId).subscribe((response) => {
-      console.log("lesson deleted successfully", response);
-      this.getLessonsForCourse();
-    })
   }
   editLesson(lesson: Lesson) {
-    this.currentLessonToEdit = lesson
-    this.showEditLesson = !this.showEditLesson
+    if (this.userService.currentUser.id !== this.details.teacherId) {
+      alert("you are not the teacher of this course")
+    }
+    else {
+      this.currentLessonToEdit = lesson
+      this.showEditLesson = !this.showEditLesson
+    }
   }
 }

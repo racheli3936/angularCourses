@@ -9,10 +9,11 @@ import e from 'express';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CourseDetailsComponent } from '../course-details/course-details.component';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-all-courses',
   standalone: true,
-  imports: [AsyncPipe,RouterOutlet,CourseDetailsComponent],
+  imports: [AsyncPipe,RouterOutlet,CourseDetailsComponent,MatIcon],
   templateUrl: './all-courses.component.html',
   styleUrl: './all-courses.component.css'
 })

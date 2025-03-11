@@ -1,33 +1,80 @@
-<p>course-details works!-----------</p>
+<!-- <p>course-details works!-----------</p>
 @if(this.showForm)
 {
-  <app-add-lesson [currentCourse]="details"></app-add-lesson>
+<app-add-lesson [currentCourse]="details"></app-add-lesson>
 }
 @if(this.showEditLesson)
 {
-  <app-edit-lesson [currentCourse]="details" [currentLesson]="currentLessonToEdit"></app-edit-lesson>
+<app-edit-lesson [currentCourse]="details" [currentLesson]="currentLessonToEdit"></app-edit-lesson>
 }
 
 <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>{{details.title}}hello</mat-card-title>
-      <mat-card-subtitle> {{details.description}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <button (click)="addLesson(details)">הוסף שיעור</button>
-      <p>lessons</p>
-      <button (click)="getLessonsForCourse()">כל השיעורים</button>
-      @for(lesson of lesssnsForCourse;track lesson.id)
-      {
-        <p>title:{{lesson.title}},
-          content:{{lesson.content}}
-        id:{{lesson.id}}</p>
+  <mat-card-header>
+    <mat-card-title>{{details.title}}hello</mat-card-title>
+    <mat-card-subtitle> {{details.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    @if(currentUser.role=='teacher')
+    {
+    <button (click)="addLesson(details)">הוסף שיעור</button>
+    }
+    <button (click)="getLessonsForCourse()">כל השיעורים</button>
+    @for(lesson of lesssnsForCourse;track lesson.id)
+    {
+    <p>title:{{lesson.title}},
+      content:{{lesson.content}}</p>
+    @if(currentUser.role=='teacher')
+    {
+    <button (click)="deleteLesson(lesson)">הסר שיעור</button>
+    <button (click)="editLesson(lesson)">ערוך שיעור</button>
+    }
 
-         <button (click)="deleteLesson(lesson)">הסר שיעור</button>
-         <button (click)="editLesson(lesson)">ערוך שיעור</button>
-      }
-    </mat-card-content>
-    <mat-card-actions>
+    }
+  </mat-card-content>
+  <mat-card-actions>
 
-    </mat-card-actions>
-  </mat-card>
+  </mat-card-actions>
+</mat-card> -->
+<p>course-details works!-----------</p>
+@if(this.showForm)
+{
+<app-add-lesson [currentCourse]="details"></app-add-lesson>
+}
+@if(this.showEditLesson)
+{
+<app-edit-lesson [currentCourse]="details" [currentLesson]="currentLessonToEdit"></app-edit-lesson>
+}
+
+<mat-card class="example-card" style="background-color: #f8d3e0; border: 1px solid #e91e63;">
+  <mat-card-header>
+    <mat-card-title>{{details.title}} hello</mat-card-title>
+    <mat-card-subtitle>{{details.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    @if(currentUser.role=='teacher')
+    {
+    <button mat-button (click)="addLesson(details)">
+      <mat-icon>add</mat-icon> הוסף שיעור
+    </button>
+    }
+    <button mat-button (click)="getLessonsForCourse()">
+      <mat-icon>list</mat-icon> כל השיעורים
+    </button>
+    @for(lesson of lesssnsForCourse; track lesson.id)
+    {
+    <p>title: {{lesson.title}}, content: {{lesson.content}}</p>
+    @if(currentUser.role=='teacher')
+    {
+    <button mat-button (click)="deleteLesson(lesson)">
+      <mat-icon>delete</mat-icon> הסר שיעור
+    </button>
+    <button mat-button (click)="editLesson(lesson)">
+      <mat-icon>edit</mat-icon> ערוך שיעור
+    </button>
+    }
+    }
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- Additional actions can be added here -->
+  </mat-card-actions>
+</mat-card>

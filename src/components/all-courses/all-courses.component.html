@@ -1,10 +1,8 @@
-<p>all-courses works!</p>
+<!-- 
 @for(course of (courses$ | async); track course)
 {
 <div class="course">
   name: {{course.title}},
-  <!-- description: {{course.description}},
-            id: {{course.id}} -->
   <button mat-raised-button color="primary" (click)="details(course)">פרטי הקורס</button>
   @if(currentCourse === course)
   {
@@ -24,5 +22,39 @@
   }
 </div>
 }
+<router-outlet /> -->
+@for(course of (courses$ | async); track course)
+{
+<div class="course" style="background-color: #f8d3e0; border: 1px solid #e91e63; padding: 10px; margin: 10px 0;">
+  <p>שם: {{course.title}}</p>
+  <!-- description: {{course.description}}, id: {{course.id}} -->
+  <button mat-button (click)="details(course)">
+    <mat-icon>info</mat-icon> פרטי הקורס
+  </button>
+  @if(currentCourse === course)
+  {
+    <app-course-details [details]="course"></app-course-details>
+  }
+  @if(userRole=='user')
+  {
+
+    <button mat-button (click)="join(course.id)">
+      <mat-icon>group_add</mat-icon> הצטרפות
+    </button>
+    <button mat-button (click)="exit(course.id)">
+      <mat-icon>group_remove</mat-icon> יציאה
+    </button>
+ 
+  }
+  @if(userRole=='teacher')
+  {
+  <button mat-button (click)="editCourse(course)">
+    <mat-icon>edit</mat-icon> עריכה
+  </button>
+  <button mat-button (click)="deleteCourse(course)">
+    <mat-icon>delete</mat-icon> מחיקה
+  </button>
+  }
+</div>
+}
 <router-outlet />
-<!-- <button (click)="navigateHome()">חזרה לדף הבית</button> -->

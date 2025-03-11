@@ -120,6 +120,8 @@ else{
         // ניתן להוסיף לוגיקה נוספת אם נדרש
       },
       (error) => {
+        alert("you are already enrolled in this course")
+
         console.error('Error enrolling student', error);
       }
     );
@@ -149,12 +151,14 @@ else{
           alert(`${course.title}: יצאת בהצלחה מהקורס `)
         },
         (error) => {
+         
           console.error('Error fetching course details', error);
         }
       )
       // ניתן להוסיף לוגיקה נוספת אם נדרש
     },
     (error) => {
+      alert("you arent enrolled in this course")
       console.error('Error unenrolling student', error);
     }
   );
