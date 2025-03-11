@@ -28,7 +28,7 @@ export const routes: Routes = [
               children: [
                   { path: 'edit/:title/:description/:id/:teacherId', component: EditCourseComponent },
                   //{ path: 'delete', component: DeleteCourseComponent },
-                 // { path: 'register-course', component: RegisterCourseComponent },
+                  // { path: 'register-course', component: RegisterCourseComponent },
                   //{ path: 'leave-course', component: LeaveCourseComponent }
               ]},
           { path: 'add', component: AddCourseComponent,canActivate: [teacherGuard] },
@@ -36,5 +36,5 @@ export const routes: Routes = [
         ],
         canActivate: [authGuard]
       },
-    //{ path: '', redirectTo: '/auth', pathMatch: 'prefix' },
+    {path: '', redirectTo: '/auth', pathMatch: 'prefix' },
 ];

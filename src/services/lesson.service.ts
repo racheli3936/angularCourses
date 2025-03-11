@@ -40,10 +40,10 @@ this.coursesServise.getCourseById(courseId).subscribe((course) => {
 
 });  })
   }
-  updateLessonById(courseId:number,lessonId:number,newLessn:Lesson) {
-    //return this.http.put(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)
-    'put'
-    '/:courseId/lessons/:id '
+  updateLessonById(courseId:number,lessonId:number,newLesson:Lesson):Observable<any> {
+    console.log("in servise",lessonId,courseId);
+    //return this.http.put(`http://localhost:3000/api/courses/${selctedCours}/lessons/${selectedlesson}`, updateData, { })
+    return this.http.put(`${this.apiUrl}/${courseId}/lessons/${lessonId}`,newLesson)
   }
   deleteLessonById(courseId:number,lessonId:number):Observable<any> {
     return this.http.delete(`${this.apiUrl}/${courseId}/lessons/${lessonId}`)

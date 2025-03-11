@@ -20,13 +20,14 @@
       @for(lesson of lesssnsForCourse;track lesson.id)
       {
         <p>title:{{lesson.title}},
-          content:{{lesson.content}}</p>
+          content:{{lesson.content}}
+        id:{{lesson.id}}</p>
+
          <button (click)="deleteLesson(lesson)">הסר שיעור</button>
          <button (click)="editLesson(lesson)">ערוך שיעור</button>
       }
     </mat-card-content>
     <mat-card-actions>
-      <!-- <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button> -->
+
     </mat-card-actions>
   </mat-card>
